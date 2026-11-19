@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VASUDHA - Smart Agriculture</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* ROUND LOGO STYLE */
+    .j{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      object-fit:cover;
+      display:block;
+      margin:0 auto 15px;
+      border:4px solid #d8bd78;
+      box-shadow:0 8px 20px #0003;
+    }
+
+    /* HEADER LOGO STYLE */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .header-logo{
+      width:65px;
+      height:65px;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid #d8bd78;
+      box-shadow:0 5px 15px #0003;
+    }
+    .brand h2{
+      margin:0;
+    }
+
+*{box-sizing:border-box}
+:root{
+    --deep:#061b15;
+    --forest:#0b3022;
+    --green:#174c35;
+    --gold:#d8bd78;
+    --cream:#f4f0df;
+    --mint:#c5e5b0;
+}
+body{
+    margin:0;
+    font-family:'Manrope',Arial,sans-serif;
+    color:#fff;
+    background:
+      repeating-radial-gradient(ellipse at 15% 20%,transparent 0 28px,#ffffff0b 29px 30px,transparent 31px 58px),
+      repeating-linear-gradient(135deg,transparent 0 42px,#d8bd7808 43px 44px,transparent 45px 85px),
+      radial-gradient(ellipse at 80% 10%,#286344 0%,transparent 38%),
+      linear-gradient(135deg,#041710,#0b3022 55%,#174c35);
+    background-attachment:fixed;
+}
+button,input,select,textarea{font:inherit}
+button{
+    border:1px solid #e6d39c;
+    border-radius:9px;
+    padding:11px 16px;
+    background:linear-gradient(135deg,#e5d39b,#c5a85e);
+    color:#142b1d;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+button:hover{filter:brightness(1.1);transform:translateY(-1px)}
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #c6d7c8;
+    border-radius:8px;
+    margin:6px 0 12px;
+    background:#fff;
+    color:#222;
+}
+textarea{min-height:85px;resize:vertical}
+label{font-weight:800;font-size:13px;color:inherit}
+h1,h2,h3{color:var(--mint)}
+h1,h2{font-family:'DM Serif Display',Georgia,serif;letter-spacing:.4px}
+h1{font-size:34px}
+h2{font-size:26px}
+.hidden{display:none!important}
+.container{max-width:1200px;margin:auto;padding:20px}
+.card{
+    position:relative;
+    overflow:hidden;
+    background:
+      repeating-radial-gradient(ellipse at 100% 0%,transparent 0 35px,#ffffff08 36px 37px,transparent 38px 70px),
+      linear-gradient(135deg,#ffffff19,#ffffff0a);
+    border:1px solid #d8bd7845;
+    border-radius:17px;
+    padding:21px;
+    margin:15px 0;
+    box-shadow:0 12px 30px #0002;
+    backdrop-filter:blur(8px);
+}
+.auth{
+    max-width:430px;
+    margin:7vh auto;
+    padding:30px;
+    background:
+      repeating-radial-gradient(ellipse at 100% 0%,transparent 0 30px,#174c3508 31px 32px,transparent 33px 62px),
+      var(--cream);
+    color:#173b27;
+    border:1px solid var(--gold);
+    border-radius:20px;
+    box-shadow:0 20px 55px #0007;
+}
+.auth h1{color:#174c35;text-align:center;font-size:42px;letter-spacing:4px}
+.auth button{width:100%;margin-top:8px}
+.auth small{color:#555}
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    padding:17px 22px;
+    background:linear-gradient(110deg,#041710f5,#0d3828f5);
+    border-bottom:1px solid #d8bd7860;
+    box-shadow:0 8px 25px #0003;
+}
+header h2{
+    margin:0;
+    color:var(--gold);
+    font-family:'DM Serif Display',Georgia,serif;
+    font-size:36px;
+    letter-spacing:4px;
+}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:12px 0}
+nav button{
+    background:#f1eddb;
+    color:#173b27;
+    border:1px solid #d8bd78;
+    padding:10px 13px;
+}
+nav button.active{background:var(--gold);color:#142b1d}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+.service{cursor:pointer;min-height:145px;transition:.2s}
+.service:hover{transform:translateY(-4px);background:#ffffff25}
+.service h3{font-size:20px}
+.stat{font-size:29px;font-weight:800;color:var(--gold)}
+.section{display:none}
+.section.active{display:block}
+.result{
+    background:#f0ffe8;
+    color:#173b27;
+    padding:15px;
+    border-radius:10px;
+    margin:10px 0;
+    line-height:1.8;
+}
+.item{
+    background:#f6fff2;
+    color:#193b25;
+    padding:16px;
+    border-radius:12px;
+    margin:12px 0;
+    border-left:4px solid #c5a85e;
+    box-shadow:0 6px 18px #0002;
+}
+.item h3{color:#17613a}
+.item button{margin:5px 4px 5px 0}
+.delete-btn{background:#a83e35;color:white;border-color:#a83e35}
+.danger{color:#ffb5a9}
+.row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:12px;
+}
+.muted{color:#d5e8d8;font-size:13px}
+.error{color:#ffb5a9}
+.success{color:#c5f58b}
+hr{border:0;border-top:1px solid #ffffff30;margin:18px 0}
+footer{text-align:center;padding:25px;color:#d1e8d5}
+a{color:#17613a}
+@media(max-width:600px){
+    .container{padding:12px}
+    header{padding:13px}
+    .auth{margin:25px 12px;padding:22px}
+    h1{font-size:29px}
+    .header-logo{width:48px;height:48px}
+    .brand h2{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="authPage" class="auth">
+    <img class="j" src="https://i.ibb.co/Hp1PKXXs/hackthon34.png" alt="VASUDHA Logo">
+    <h1> VASUDHA</h1>
+    <p style="text-align:center">Smart Agriculture Platform</p>
+
+    <div id="loginForm">
+        <h2 style="color:#17613a">Login</h2>
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password">
+        <button onclick="login()">Login</button>
+        <p style="text-align:center;color:#555">
+            Don't have an account?
+            <a href="#" onclick="showSignup();return false">Create Account</a>
+        </p>
+    </div>
+
+    <div id="signupForm" class="hidden">
+        <h2 style="color:#17613a">Create Account</h2>
+        <label>Full Name</label>
+        <input id="signupName" placeholder="Enter your name">
+        <label>Email Address</label>
+        <input type="email" id="signupEmail" placeholder="Enter email">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Create password">
+        <button onclick="signup()">Create Account</button>
+        <p style="text-align:center;color:#555">
+            Already registered?
+            <a href="#" onclick="showLogin();return false">Login</a>
+        </p>
+    </div>
+    <p id="authMessage" class="error"></p>
+    <small>VASUDHA account access.</small>
+</div>
+
+<div id="appPage" class="hidden">
+<header>
+    <div class="brand">
+        <img class="header-logo" src="https://i.ibb.co/Hp1PKXXs/hackthon34.png" alt="VASUDHA Logo">
+        <div>
+            <h2>VASUDHA</h2>
+            <small>Smart Agriculture Platform</small>
+        </div>
+    </div>
+    <div>
+        <span id="welcomeUser"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+<nav>
+    <button class="active" onclick="showSection('home',this)">Home</button>
+    <button onclick="showSection('land',this)">Land Exchange</button>
+    <button onclick="showSection('equipment',this)">Equipment Exchange</button>
+    <button onclick="showSection('farming',this)">Smart Farming</button>
+    <button onclick="showSection('weather',this)">Weather</button>
+    <button onclick="showSection('robot',this)">Agriculture Robot</button>
+    <button onclick="showSection('dashboard',this)">Dashboard</button>
+    <button onclick="showSection('requests',this)">My Requests</button>
+    <button onclick="showSection('messages',this)">Messages</button>
+</nav>
+
+<section id="home" class="section active">
+    <div class="card">
+        <h1>Welcome to VASUDHA 🌾</h1>
+        <p>A smart digital platform connecting farmers, landowners and agricultural equipment providers.</p>
+        <p>Discover agricultural opportunities, exchange equipment, calculate costs and access farming information.</p>
+    </div>
+    <h2>Our Services</h2>
+    <div class="grid">
+        <div class="card service" onclick="showSection('land')">
+            <h3>🌳 Land Exchange</h3>
+            <p>Search agricultural land by district and particular village or place.</p>
+        </div>
+        <div class="card service" onclick="showSection('equipment')">
+            <h3>🚜 Equipment Exchange</h3>
+            <p>Share, rent or exchange agricultural equipment.</p>
+        </div>
+        <div class="card service" onclick="showSection('farming')">
+            <h3>🌱 Smart Farming</h3>
+            <p>Explore crop and soil information.</p>
+        </div>
+        <div class="card service" onclick="showSection('weather')">
+            <h3>🌦️ Weather</h3>
+            <p>Check weather information for your area.</p>
+        </div>
+        <div class="card service" onclick="showSection('dashboard')">
+            <h3>📊 Dashboard</h3>
+            <p>View your listings and activity.</p>
+        </div>
+        <div class="card service" onclick="showSection('robot')">
+            <h3>🤖 Agriculture Robot</h3>
+            <p>Calculate robot service costs based on acres.</p>
+        </div>
+    </div>
+</section>
+
+<section id="land" class="section">
+    <h1>🌳 Land Exchange</h1>
+    <div class="card">
+        <h2>Search Agricultural Land</h2>
+        <p class="muted">Search by district and optionally by a particular village or place.</p>
+        <div class="row">
+            <div>
+                <label>Select District</label>
+                <select id="districtSearch">
+                    <option value="">All Districts</option>
+                    <option>Dakshina Kannada</option><option>Udupi</option>
+                    <option>Uttara Kannada</option><option>Shivamogga</option>
+                    <option>Chikkamagaluru</option><option>Hassan</option>
+                    <option>Mysuru</option><option>Mandya</option>
+                    <option>Bengaluru Rural</option><option>Bengaluru Urban</option>
+                    <option>Belagavi</option><option>Dharwad</option>
+                    <option>Vijayapura</option><option>Kalaburagi</option>
+                    <option>Ballari</option><option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label>Village / Particular Place</label>
+                <input id="placeSearch" placeholder="Example: Kalladka">
+            </div>
+        </div>
+        <button onclick="loadListings()">Search Land</button>
+        <button onclick="clearLandSearch()">Show All</button>
+    </div>
+
+    <div class="card">
+        <h2>Publish Your Land</h2>
+        <label>Land Title</label>
+        <input id="landTitle" placeholder="Example: Agricultural land for sale">
+
+        <div class="row">
+            <div>
+                <label>District</label>
+                <select id="landDistrict">
+                    <option value="">Select District</option>
+                    <option>Dakshina Kannada</option><option>Udupi</option>
+                    <option>Uttara Kannada</option><option>Shivamogga</option>
+                    <option>Chikkamagaluru</option><option>Hassan</option>
+                    <option>Mysuru</option><option>Mandya</option>
+                    <option>Bengaluru Rural</option><option>Bengaluru Urban</option>
+                    <option>Belagavi</option><option>Dharwad</option>
+                    <option>Vijayapura</option><option>Kalaburagi</option>
+                    <option>Ballari</option><option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label>Village / Particular Place</label>
+                <input id="landVillage" placeholder="Enter village or place">
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label>Land Area (Acres)</label>
+                <input type="number" id="landAcres" min="0.01" step="0.01" placeholder="Enter acres">
+            </div>
+            <div>
+                <label>Land Type</label>
+                <select id="landType">
+                    <option>Agricultural</option><option>Plantation</option>
+                    <option>Garden</option><option>Dry Land</option>
+                    <option>Wet Land</option><option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label>Soil Type</label>
+                <select id="soilType">
+                    <option>Red Soil</option><option>Black Soil</option>
+                    <option>Laterite Soil</option><option>Alluvial Soil</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label>Water Availability</label>
+                <select id="landWater">
+                    <option>Available</option><option>Seasonal</option>
+                    <option>Not Available</option>
+                </select>
+            </div>
+            <div>
+                <label>Road Access</label>
+                <select id="landRoad">
+                    <option>Available</option><option>Not Available</option>
+                </select>
+            </div>
+        </div>
+
+        <label>Availability</label>
+        <select id="landAvailability">
+            <option>For Sale</option><option>For Rent</option>
+        </select>
+
+        <h3>Land Price Calculator</h3>
+        <label>Price per Acre (₹ Lakh)</label>
+        <input type="number" id="landRate" value="30" min="0" step="0.01">
+        <label>Or Enter Total Amount (₹ Crore)</label>
+        <input type="number" id="landTotalCrore" min="0" step="0.01" placeholder="Optional manual total">
+        <button onclick="calculateLandPrice()">Calculate Land Price</button>
+        <div id="landCalculation" class="result hidden"></div>
+
+        <label>Additional Details</label>
+        <textarea id="landDetails" placeholder="Describe your land and conditions"></textarea>
+        <button onclick="publishLand()">Publish Land</button>
+        <p id="landMessage"></p>
+    </div>
+
+    <h2>Available Land Listings</h2>
+    <div id="landListings"></div>
+</section>
+
+<section id="equipment" class="section">
+    <h1>🚜 Equipment Exchange</h1>
+    <div class="card">
+        <h2>Publish Equipment</h2>
+        <label>Equipment Name</label>
+        <input id="equipmentName" placeholder="Example: Tractor">
+        <label>Equipment Type</label>
+        <select id="equipmentType">
+            <option>Tractor</option><option>Harvester</option>
+            <option>Rotavator</option><option>Plough</option>
+            <option>Seeder</option><option>Sprayer</option>
+            <option>Water Pump</option><option>Other</option>
+        </select>
+        <label>District</label>
+        <input id="equipmentDistrict" placeholder="Enter district">
+        <label>Village</label>
+        <input id="equipmentVillage" placeholder="Enter village">
+        <label>Availability</label>
+        <select id="equipmentAvailability">
+            <option>For Rent</option><option>For Sale</option><option>For Exchange</option>
+        </select>
+        <label>Rental Price (₹)</label>
+        <input type="number" id="equipmentPrice" min="0" placeholder="Enter price">
+        <label>Exchange Requirement</label>
+        <input id="equipmentExchange" placeholder="Optional">
+        <label>Equipment Details</label>
+        <textarea id="equipmentDetails" placeholder="Enter equipment condition and details"></textarea>
+        <button onclick="publishEquipment()">Publish Equipment</button>
+        <p id="equipmentMessage"></p>
+    </div>
+    <h2>Available Equipment</h2>
+    <div id="equipmentListings"></div>
+</section>
+
+<section id="farming" class="section">
+    <h1>🌱 Smart Farming</h1>
+    <div class="card">
+        <h2>Crop Information</h2>
+        <label>Select Crop</label>
+        <select id="cropSelect">
+            <option value="">Choose Crop</option>
+            <option value="rice">Rice</option><option value="arecanut">Arecanut</option>
+            <option value="coconut">Coconut</option><option value="sugarcane">Sugarcane</option>
+            <option value="maize">Maize</option><option value="pepper">Black Pepper</option>
+            <option value="coffee">Coffee</option><option value="banana">Banana</option>
+        </select>
+        <button onclick="showCropInfo()">Get Crop Information</button>
+        <div id="cropResult" class="result hidden"></div>
+    </div>
+    <div class="card">
+        <h2>Soil pH Guide</h2>
+        <label>Enter Soil pH Value</label>
+        <input type="number" id="soilPH" min="0" max="14" step="0.1" placeholder="Example: 6.5">
+        <button onclick="checkPH()">Check Soil pH</button>
+        <div id="phResult" class="result hidden"></div>
+    </div>
+</section>
+
+<section id="weather" class="section">
+    <h1>🌦️ Weather Information</h1>
+    <div class="card">
+        <label>Enter City or District</label>
+        <input id="weatherCity" placeholder="Example: Mangalore">
+        <button onclick="getWeather()">Check Weather</button>
+        <div id="weatherResult" class="result hidden"></div>
+    </div>
+</section>
+
+<section id="robot" class="section">
+    <h1>🤖 Agriculture Robot Calculator</h1>
+    <div class="card">
+        <p>Calculate the estimated agriculture robot service cost based on your land area.</p>
+        <label>Enter Land Area (Acres)</label>
+        <input type="number" id="robotAcres" min="0.01" step="0.01" placeholder="Enter acres">
+        <label>Robot Cost Per Acre (₹ Lakh)</label>
+        <input type="number" id="robotRate" value="30" min="0" step="0.01">
+        <label>Or Enter Total Amount Manually (₹ Crore)</label>
+        <input type="number" id="robotManualCrore" min="0" step="0.01" placeholder="Optional manual amount">
+        <button onclick="calculateRobot()">Calculate Robot Cost</button>
+        <div id="robotResult" class="result hidden"></div>
+    </div>
+</section>
+
+<section id="dashboard" class="section">
+    <h1>📊 Dashboard</h1>
+    <div class="grid">
+        <div class="card"><p>Total Listings</p><div class="stat" id="totalListings">0</div></div>
+        <div class="card"><p>Land Listings</p><div class="stat" id="totalLand">0</div></div>
+        <div class="card"><p>Equipment Listings</p><div class="stat" id="totalEquipment">0</div></div>
+        <div class="card"><p>Requests Sent</p><div class="stat" id="requestsSent">0</div></div>
+        <div class="card"><p>Requests Received</p><div class="stat" id="requestsReceived">0</div></div>
+    </div>
+    <div class="card">
+        <h2>My Listings</h2>
+        <div id="myListings"></div>
+    </div>
+</section>
+
+<section id="requests" class="section">
+    <h1>📩 My Requests</h1>
+    <div class="card"><h2>Requests Sent</h2><div id="sentRequests"></div></div>
+    <div class="card"><h2>Requests Received</h2><div id="receivedRequests"></div></div>
+</section>
+
+<section id="messages" class="section">
+    <h1>💬 Private Messages</h1>
+    <div class="card">
+        <p>Messages are available only to participants of the related request.</p>
+        <label>Request ID</label>
+        <input id="chatRequestId" placeholder="Request ID will appear automatically">
+        <button onclick="loadMessages()">Open Conversation</button>
+        <div id="chatMessages"></div>
+        <label>Message</label>
+        <textarea id="chatText" placeholder="Type your message"></textarea>
+        <button onclick="sendMessage()">Send Message</button>
+        <p id="chatStatus"></p>
+    </div>
+</section>
+
+</div>
+<footer>VASUDHA © 2026 | Smart Agriculture Platform</footer>
+</div>
+
+<script>
+let currentUser=null;
+let allListings=[];
+let currentChatRequest=null;
+const $=id=>document.getElementById(id);
+
+function escapeHTML(value){
+    return String(value??"").replace(/[&<>"']/g,char=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    })[char]);
+}
+
+async function api(url,options={}){
+    const response=await fetch(url,{
+        credentials:"same-origin",
+        headers:{"Content-Type":"application/json",...(options.headers||{})},
+        ...options
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(data.error||data.message||"Request failed");
+    return data;
+}
+
+function showLogin(){
+    $("loginForm").classList.remove("hidden");
+    $("signupForm").classList.add("hidden");
+    $("authMessage").textContent="";
+}
+function showSignup(){
+    $("loginForm").classList.add("hidden");
+    $("signupForm").classList.remove("hidden");
+    $("authMessage").textContent="";
+}
+
+async function login(){
+    const email=$("loginEmail").value.trim();
+    const password=$("loginPassword").value;
+    if(!email||!password){
+        $("authMessage").textContent="Enter your email and password.";
+        return;
+    }
+    try{
+        const data=await api("/api/demo-login",{
+            method:"POST",body:JSON.stringify({email,password})
+        });
+        currentUser=data.user;
+        await openApplication();
+    }catch(error){$("authMessage").textContent=error.message;}
+}
+
+async function signup(){
+    const name=$("signupName").value.trim();
+    const email=$("signupEmail").value.trim();
+    const password=$("signupPassword").value;
+    if(!name||!email||!password){
+        $("authMessage").textContent="Fill in all fields.";
+        return;
+    }
+    if(password.length<6){
+        $("authMessage").textContent="Password must be at least 6 characters.";
+        return;
+    }
+    try{
+        const data=await api("/api/demo-login",{
+            method:"POST",body:JSON.stringify({name,email,password})
+        });
+        currentUser=data.user;
+        await openApplication();
+    }catch(error){$("authMessage").textContent=error.message;}
+}
+
+async function openApplication(){
+    $("authPage").classList.add("hidden");
+    $("appPage").classList.remove("hidden");
+    $("welcomeUser").textContent="Welcome, "+(currentUser.name||currentUser.email);
+    await refreshAll();
+
+    const params=new URLSearchParams(window.location.search);
+    const requestId=params.get("request_id");
+    if(requestId){
+        openChat(requestId);
+        history.replaceState({},document.title,window.location.pathname);
+    }
+}
+
+async function logout(){
+    try{await api("/api/logout",{method:"POST",body:"{}"});}catch(e){}
+    currentUser=null;
+    $("appPage").classList.add("hidden");
+    $("authPage").classList.remove("hidden");
+    showLogin();
+}
+
+async function checkSession(){
+    try{
+        const data=await api("/api/me");
+        if(data.user){
+            currentUser=data.user;
+            await openApplication();
+        }
+    }catch(error){}
+}
+
+function showSection(id,button){
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    $(id).classList.add("active");
+    document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+    if(button)button.classList.add("active");
+    if(id==="land"||id==="equipment")loadListings();
+    if(id==="dashboard")loadDashboard();
+    if(id==="requests")loadRequests();
+}
+
+function formatMoney(lakh){
+    if(!Number.isFinite(lakh))return "Invalid amount";
+    if(lakh>=100)return "₹ "+(lakh/100).toFixed(2)+" Crore";
+    return "₹ "+lakh.toFixed(2)+" Lakh";
+}
+
+function calculateLandPrice(){
+    const acres=Number($("landAcres").value);
+    const rate=Number($("landRate").value);
+    const manual=$("landTotalCrore").value;
+    if(!Number.isFinite(acres)||acres<=0){alert("Enter valid land area.");return;}
+    const totalLakh=manual!==""?Number(manual)*100:acres*rate;
+    if(!Number.isFinite(totalLakh)||totalLakh<0){alert("Enter a valid price.");return;}
+    $("landCalculation").classList.remove("hidden");
+    $("landCalculation").innerHTML=
+        "<b>Land Area:</b> "+acres+" acres<br>"+
+        "<b>Price Per Acre:</b> "+formatMoney(totalLakh/acres)+"<br>"+
+        "<b>Total Land Price:</b> "+formatMoney(totalLakh);
+}
+
+async function publishLand(){
+    const acres=Number($("landAcres").value);
+    const manual=$("landTotalCrore").value;
+    const rate=Number($("landRate").value);
+    const district=$("landDistrict").value;
+    if(!$("landTitle").value.trim()||!district||!Number.isFinite(acres)||acres<=0){
+        $("landMessage").textContent="Enter land title, district and valid acres.";
+        return;
+    }
+    const totalLakh=manual!==""?Number(manual)*100:acres*rate;
+    if(!Number.isFinite(totalLakh)||totalLakh<0){
+        $("landMessage").textContent="Enter a valid land amount.";
+        return;
+    }
+    const payload={
+        category:"land",
+        title:$("landTitle").value.trim(),
+        district,
+        village:$("landVillage").value.trim(),
+        acres,
+        land_type:$("landType").value,
+        soil_type:$("soilType").value,
+        water:$("landWater").value,
+        road_access:$("landRoad").value,
+        availability:$("landAvailability").value,
+        price_per_acre_lakh:totalLakh/acres,
+        total_price_crore:totalLakh/100,
+        details:$("landDetails").value.trim()
+    };
+    try{
+        await api("/api/listings",{method:"POST",body:JSON.stringify(payload)});
+        $("landMessage").textContent="Land listing published successfully.";
+        $("landMessage").className="success";
+        ["landTitle","landVillage","landAcres","landTotalCrore","landDetails"].forEach(id=>$(id).value="");
+        await loadListings();
+        await loadDashboard();
+    }catch(error){
+        $("landMessage").textContent=error.message;
+        $("landMessage").className="error";
+    }
+}
+
+async function publishEquipment(){
+    const name=$("equipmentName").value.trim();
+    if(!name||!$("equipmentDistrict").value.trim()){
+        $("equipmentMessage").textContent="Enter equipment name and district.";
+        return;
+    }
+    const payload={
+        category:"equipment",
+        title:name,
+        equipment_type:$("equipmentType").value,
+        district:$("equipmentDistrict").value.trim(),
+        village:$("equipmentVillage").value.trim(),
+        availability:$("equipmentAvailability").value,
+        rental_price:Number($("equipmentPrice").value||0),
+        exchange_for:$("equipmentExchange").value.trim(),
+        details:$("equipmentDetails").value.trim()
+    };
+    try{
+        await api("/api/listings",{method:"POST",body:JSON.stringify(payload)});
+        $("equipmentMessage").textContent="Equipment published successfully.";
+        $("equipmentMessage").className="success";
+        ["equipmentName","equipmentDistrict","equipmentVillage","equipmentPrice","equipmentExchange","equipmentDetails"].forEach(id=>$(id).value="");
+        await loadListings();
+        await loadDashboard();
+    }catch(error){
+        $("equipmentMessage").textContent=error.message;
+        $("equipmentMessage").className="error";
+    }
+}
+
+function clearLandSearch(){
+    $("districtSearch").value="";
+    $("placeSearch").value="";
+    loadListings();
+}
+
+async function loadListings(){
+    try{
+        const district=$("districtSearch").value;
+        const place=$("placeSearch").value.trim();
+        const params=new URLSearchParams();
+        if(district)params.set("district",district);
+        if(place)params.set("place",place);
+        const query=params.toString();
+        const data=await api("/api/listings"+(query?"?"+query:""));
+        allListings=Array.isArray(data)?data:(data.listings||[]);
+        renderListings();
+    }catch(error){
+        $("landListings").textContent=error.message;
+        $("equipmentListings").textContent=error.message;
+    }
+}
+
+function listingHTML(item){
+    const isLand=item.category==="land";
+    const amount=isLand
+        ?(item.asking_total_crore!=null
+            ?"₹ "+Number(item.asking_total_crore).toFixed(2)+" Crore"
+            :(item.total_price_crore!=null
+                ?"₹ "+Number(item.total_price_crore).toFixed(2)+" Crore"
+                :"Contact owner"))
+        :"₹ "+Number(item.rental_price||0).toLocaleString("en-IN");
+    const isMine=currentUser&&item.owner_id===currentUser.id;
+
+    return `<div class="item">
+        <h3>${escapeHTML(item.title||item.equipment_type||"Listing")}</h3>
+        <p><b>Category:</b> ${isLand?"Land":"Equipment"}</p>
+        <p><b>District:</b> ${escapeHTML(item.district||"Not specified")}</p>
+        <p><b>Village / Place:</b> ${escapeHTML(item.village||"Not specified")}</p>
+        ${isLand?`
+        <p><b>Area:</b> ${escapeHTML(item.acres||"")} acres</p>
+        <p><b>Land Type:</b> ${escapeHTML(item.land_type||"")}</p>
+        <p><b>Soil:</b> ${escapeHTML(item.soil_type||"")}</p>
+        <p><b>Water:</b> ${escapeHTML(item.water||"")}</p>
+        <p><b>Road:</b> ${escapeHTML(item.road_access||"")}</p>`:`
+        <p><b>Equipment Type:</b> ${escapeHTML(item.equipment_type||"")}</p>
+        <p><b>Exchange:</b> ${escapeHTML(item.exchange_for||"Not specified")}</p>`}
+        <p><b>Availability:</b> ${escapeHTML(item.availability||"")}</p>
+        <p><b>Amount:</b> ${amount}</p>
+        <p>${escapeHTML(item.details||"")}</p>
+        <p><b>Owner:</b> ${escapeHTML(item.owner_name||"VASUDHA User")}</p>
+        ${isMine?`
+          <button class="delete-btn" onclick="deleteListing('${escapeHTML(item.id)}')">Delete My Listing</button>
+        `:`
+          <button onclick="sendRequest('${escapeHTML(item.id)}')">Send Request</button>
+        `}
+    </div>`;
+}
+
+function renderListings(){
+    const district=$("districtSearch").value.toLowerCase();
+    const place=$("placeSearch").value.trim().toLowerCase();
+    const land=allListings.filter(item=>
+        item.category==="land" &&
+        (!district||(item.district||"").toLowerCase()===district) &&
+        (!place||(item.village||"").toLowerCase().includes(place))
+    );
+    const equipment=allListings.filter(item=>item.category==="equipment");
+    $("landListings").innerHTML=land.length?land.map(listingHTML).join(""):"<p>No land listings found for this search.</p>";
+    $("equipmentListings").innerHTML=equipment.length?equipment.map(listingHTML).join(""):"<p>No equipment listings found.</p>";
+}
+
+async function deleteListing(id){
+    if(!id||!confirm("Are you sure you want to delete your listing?"))return;
+    try{
+        await api("/api/listings/"+encodeURIComponent(id),{method:"DELETE"});
+        alert("Your listing has been deleted.");
+        await loadListings();
+        await loadDashboard();
+    }catch(error){alert(error.message);}
+}
+
+async function sendRequest(listingId){
+    if(!listingId){alert("Listing ID is missing.");return;}
+    const message=prompt("Write a message to the owner:");
+    if(message===null)return;
+    if(!message.trim()){alert("Please enter a message.");return;}
+    const phone=prompt("Enter your contact phone number (optional):")||"";
+    try{
+        const result=await api("/api/requests",{
+            method:"POST",
+            body:JSON.stringify({
+                listing_id:listingId,
+                buyer_name:currentUser.name,
+                buyer_email:currentUser.email,
+                buyer_phone:phone,
+                message:message.trim(),
+                period:""
+            })
+        });
+        alert("Request sent successfully. Request ID: "+result.request_id+
+              (result.email_sent?"\nEmail notification sent to owner.":"\nEmail notification could not be sent. The request is saved."));
+        await loadRequests();
+        await loadDashboard();
+        openChat(result.request_id);
+    }catch(error){alert(error.message);}
+}
+
+function calculateRobot(){
+    const acres=Number($("robotAcres").value);
+    const rate=Number($("robotRate").value);
+    const manual=$("robotManualCrore").value;
+    if(!Number.isFinite(acres)||acres<=0){alert("Enter valid acres.");return;}
+    const totalLakh=manual!==""?Number(manual)*100:acres*rate;
+    if(!Number.isFinite(totalLakh)||totalLakh<0){alert("Enter a valid amount.");return;}
+    const perAcre=totalLakh/acres;
+    $("robotResult").classList.remove("hidden");
+    $("robotResult").innerHTML=
+        "<h3>Robot Cost Calculation</h3>"+
+        "<b>Total Land:</b> "+acres+" acres<br>"+
+        "<b>Cost Per Acre:</b> "+formatMoney(perAcre)+"<br>"+
+        "<b>Total Robot Cost:</b> "+formatMoney(totalLakh)+"<br>"+
+        "<b>Total in Crores:</b> ₹ "+(totalLakh/100).toFixed(2)+" Crore";
+}
+
+function showCropInfo(){
+    const crops={
+        rice:"Rice generally grows well in warm conditions with adequate water. Soil preparation, suitable varieties and water management are important.",
+        arecanut:"Arecanut is a plantation crop. Good drainage, suitable shade and regular moisture management are important.",
+        coconut:"Coconut requires suitable climate, adequate sunlight and well-drained soil. Water management is important during dry periods.",
+        sugarcane:"Sugarcane is a long-duration crop. Soil fertility, irrigation and weed management are important.",
+        maize:"Maize needs suitable soil moisture, sunlight and balanced nutrients. Avoid waterlogging.",
+        pepper:"Black pepper is a climbing spice crop. It commonly needs support trees, moisture and good drainage.",
+        coffee:"Coffee cultivation depends on suitable elevation, shade, rainfall and soil conditions.",
+        banana:"Banana requires warm conditions, fertile soil and regular water supply."
+    };
+    const crop=$("cropSelect").value;
+    if(!crop){alert("Select a crop.");return;}
+    $("cropResult").classList.remove("hidden");
+    $("cropResult").textContent=crops[crop];
+}
+
+function checkPH(){
+    const ph=Number($("soilPH").value);
+    if($("soilPH").value===""||ph<0||ph>14){alert("Enter a pH value between 0 and 14.");return;}
+    let message;
+    if(ph<5.5)message="The soil is acidic. Consider a soil test and consult an agriculture expert about suitable soil amendments.";
+    else if(ph<=7.5)message="The soil pH is within a commonly suitable range for many crops. Crop requirements can differ.";
+    else message="The soil is alkaline. Consider a soil test and expert advice for crop-specific management.";
+    $("phResult").classList.remove("hidden");
+    $("phResult").textContent=message;
+}
+
+async function getWeather(){
+    const city=$("weatherCity").value.trim();
+    if(!city){alert("Enter a city or district.");return;}
+    $("weatherResult").classList.remove("hidden");
+    $("weatherResult").textContent="Loading weather...";
+    try{
+        const geoResponse=await fetch(
+            "https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(city)+"&count=5&language=en&format=json"
+        );
+        if(!geoResponse.ok)throw new Error("Could not find location service.");
+        const geoData=await geoResponse.json();
+        if(!geoData.results||!geoData.results.length)throw new Error("Location not found. Check the spelling.");
+        const place=geoData.results[0];
+        const weatherResponse=await fetch(
+            "https://api.open-meteo.com/v1/forecast?latitude="+place.latitude+
+            "&longitude="+place.longitude+
+            "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m"+
+            "&timezone=auto"
+        );
+        if(!weatherResponse.ok)throw new Error("Weather service is unavailable.");
+        const data=await weatherResponse.json();
+        const c=data.current;
+        if(!c)throw new Error("Weather information is not available.");
+        $("weatherResult").innerHTML=
+            "<h3>"+escapeHTML(place.name)+", "+escapeHTML(place.country||"")+"</h3>"+
+            "<p><b>Temperature:</b> "+c.temperature_2m+" °C</p>"+
+            "<p><b>Feels Like:</b> "+c.apparent_temperature+" °C</p>"+
+            "<p><b>Humidity:</b> "+c.relative_humidity_2m+"%</p>"+
+            "<p><b>Precipitation:</b> "+c.precipitation+" mm</p>"+
+            "<p><b>Wind Speed:</b> "+c.wind_speed_10m+" km/h</p>"+
+            "<small>Updated: "+escapeHTML(c.time||"")+"</small>";
+    }catch(error){$("weatherResult").textContent=error.message;}
+}
+
+async function loadDashboard(){
+    try{
+        const data=await api("/api/dashboard");
+        $("totalListings").textContent=data.total_listings??0;
+        $("totalLand").textContent=data.land_listings??0;
+        $("totalEquipment").textContent=data.equipment_listings??0;
+        $("requestsSent").textContent=data.requests_sent??0;
+        $("requestsReceived").textContent=data.requests_received??0;
+        const mine=data.my_listings||[];
+        $("myListings").innerHTML=mine.length?mine.map(item=>`
+            <div class="item">
+                <h3>${escapeHTML(item.title||"Listing")}</h3>
+                <p>${escapeHTML(item.district||"")} - ${escapeHTML(item.village||"")}</p>
+                <button class="delete-btn" onclick="deleteListing('${escapeHTML(item.id)}')">Delete My Listing</button>
+            </div>`).join(""):"<p>No listings published yet.</p>";
+    }catch(error){$("myListings").textContent=error.message;}
+}
+
+async function loadRequests(){
+    try{
+        const data=await api("/api/requests");
+        const sent=data.sent_requests||[];
+        const received=data.received_requests||[];
+        $("sentRequests").innerHTML=sent.length?sent.map(r=>requestHTML(r,false)).join(""):"<p>No sent requests.</p>";
+        $("receivedRequests").innerHTML=received.length?received.map(r=>requestHTML(r,true)).join(""):"<p>No received requests.</p>";
+    }catch(error){
+        $("sentRequests").textContent=error.message;
+        $("receivedRequests").textContent=error.message;
+    }
+}
+
+/* FIX: Use request owner_id instead of exposing owner_email. */
+function requestHTML(r,isOwner){
+    const id=r.id||r.request_id||"";
+    const status=r.status||"Pending";
+
+    return `<div class="item">
+        <h3>Request ${escapeHTML(id)}</h3>
+        <p><b>Listing:</b> ${escapeHTML(r.listing_title||r.title||"Agriculture Listing")}</p>
+        <p><b>${isOwner?"Requester":"Listing Owner"}:</b>
+        ${escapeHTML(isOwner?(r.buyer_name||"Farmer"):(r.owner_name||"Listing Owner"))}</p>
+        <p><b>Status:</b> ${escapeHTML(status)}</p>
+        <p><b>Message:</b> ${escapeHTML(r.message||"")}</p>
+        ${isOwner&&status==="Pending"?`
+            <button onclick="updateRequest('${escapeHTML(id)}','Accepted')">Accept</button>
+            <button onclick="updateRequest('${escapeHTML(id)}','Rejected')">Reject</button>`:""}
+        <button onclick="openChat('${escapeHTML(id)}')">Open Chat</button>
+    </div>`;
+}
+
+async function updateRequest(id,status){
+    try{
+        await api("/api/requests/"+encodeURIComponent(id)+"/status",{
+            method:"POST",body:JSON.stringify({status})
+        });
+        alert("Request "+status.toLowerCase()+".");
+        await loadRequests();
+        await loadDashboard();
+    }catch(error){alert(error.message);}
+}
+
+function openChat(id){
+    if(!id)return;
+    currentChatRequest=id;
+    $("chatRequestId").value=id;
+    showSection("messages");
+    loadMessages();
+}
+
+async function loadMessages(){
+    const id=$("chatRequestId").value.trim();
+    if(!id){alert("Enter a request ID.");return;}
+    currentChatRequest=id;
+    try{
+        const data=await api("/api/requests/"+encodeURIComponent(id)+"/messages");
+        const messages=data.messages||[];
+        $("chatMessages").innerHTML=messages.length?messages.map(m=>`
+            <div class="item">
+                <b>${escapeHTML(m.sender_name||"User")}</b>
+                <p>${escapeHTML(m.message||"")}</p>
+                <small>${escapeHTML(m.created_at||"")}</small>
+            </div>`).join(""):"<p>No messages yet.</p>";
+    }catch(error){$("chatMessages").textContent=error.message;}
+}
+
+async function sendMessage(){
+    const id=currentChatRequest||$("chatRequestId").value.trim();
+    const message=$("chatText").value.trim();
+    if(!id||!message){alert("Enter a request ID and message.");return;}
+    try{
+        await api("/api/requests/"+encodeURIComponent(id)+"/messages",{
+            method:"POST",body:JSON.stringify({message})
+        });
+        $("chatText").value="";
+        $("chatStatus").textContent="Message sent.";
+        await loadMessages();
+    }catch(error){$("chatStatus").textContent=error.message;}
+}
+
+async function refreshAll(){
+    await Promise.allSettled([loadListings(),loadDashboard(),loadRequests()]);
+}
+
+checkSession();
+</script>
+</body>
+</html>
